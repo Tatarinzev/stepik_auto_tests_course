@@ -1,0 +1,22 @@
+import math
+import time
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+url = 'http://suninjuly.github.io/math.html'
+
+browser = webdriver.Chrome()
+browser.get(url)
+input_value = browser.find_element(By.ID, 'input_value').text
+
+def calc(x):
+  return str(math.log(abs(12*math.sin(int(x)))))
+
+im_robot = browser.find_element(By.ID, 'robotCheckbox').click()
+robots_rule = browser.find_element(By.ID, 'robotsRule').click()
+result = browser.find_element(By.ID, 'answer').send_keys(calc(int(input_value)))
+submit = browser.find_element(By.TAG_NAME, 'button').click()
+time.sleep(5)
+
+browser.quit()
